@@ -2,6 +2,10 @@
     use std::cmp::Ordering;
 
     use crate::dbmodel;
+
+    // For now the vectordb supports 2D vectors.
+    // Change the value of K to consider the length of the query vector instead.
+    const K:usize = 2;
     // Define a KD tree structure
     #[derive(Debug)]
     pub struct KDTree {
@@ -9,6 +13,7 @@
     }
 
     impl KDTree {
+        
         // create the new function that returns instance of self of type KDTree.
         fn new(vectors: Vec<dbmodel::Vector>) -> Self {
             
@@ -38,7 +43,7 @@
                 return None;
             }
 
-            let K = 2;
+            
             // determine the axis for spliting the KDTree. 
             // Alternate the axis based on the depth 
             let axis = depth % K; // K is the number of dimensions
@@ -76,7 +81,7 @@
             match node {
                 None => None,
                 Some(n) => {
-                    let axis = depth % query_vector.coordinates.len();
+                    let axis = depth % K;
                     let next_node = if query_vector.coordinates[axis] < n.vector.coordinates[axis] {
                         &n.left
                     } else {
@@ -178,9 +183,9 @@ mod tests {
         assert_eq!(kd_tree.nearest_neighbor(&query_vector), Some(Vector::new(vec![8.8, 15.8])));
 
         if let Some(nearest) = kd_tree.nearest_neighbor(&query_vector) {
-            println!("Nearest neighbor to {:?} is {:?}", query_vector, nearest);
+            println!("Approximate Nearest neighbor to {:?} is {:?}", query_vector, nearest);
         } else {
-            println!("No nearest neighbor found");
+            println!("Approximate neighbor not found.");
         }
     }
 }
