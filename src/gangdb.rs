@@ -38,7 +38,7 @@
         fn construct_kd_tree(vectors: Vec<dbmodel::Vector>, depth: usize) -> Option<Box<dbmodel::Node>> {
         
             // the tree cannot be built from an empty set of vectors.
-            // immediately return.
+            // immediately returnode.
             if vectors.is_empty() {
                 return None;
             }
@@ -80,38 +80,38 @@
         ) -> Option<dbmodel::Vector> {
             match node {
                 None => None,
-                Some(n) => {
+                Some(node) => {
                     let axis = depth % K;
-                    let next_node = if query_vector.coordinates[axis] < n.vector.coordinates[axis] {
-                        &n.left
+                    let next_node = if query_vector.coordinates[axis] < node.vector.coordinates[axis] {
+                        &node.left
                     } else {
-                        &n.right
+                        &node.right
                     };
                     let mut nearest = self._nearest_neighbor(next_node, query_vector, depth + 1);
 
                     if nearest.is_none()
-                        || cosine_similarity(&n.vector, query_vector)
+                        || cosine_similarity(&node.vector, query_vector)
                             > cosine_similarity(&nearest.as_ref().unwrap(), query_vector)
                     {
 
-                        nearest = Some(n.vector.clone());
+                        nearest = Some(node.vector.clone());
                     }
 
-                    let axis_dist = (query_vector.coordinates[axis] - n.vector.coordinates[axis]).abs();
+                    let axis_dist = (query_vector.coordinates[axis] - node.vector.coordinates[axis]).abs();
                     if axis_dist > cosine_similarity(&nearest.as_ref().unwrap(), query_vector) {
 
                         let other_node = if let Some(next_node_inner) = next_node.as_ref() {
-                            if let Some(left_inner) = n.left.as_ref() {
+                            if let Some(left_inner) = node.left.as_ref() {
                                 if next_node_inner.vector == left_inner.vector {
-                                    &n.right
+                                    &node.right
                                 } else {
-                                    &n.left
+                                    &node.left
                                 }
                             } else {
-                                &n.left
+                                &node.left
                             }
                         } else {
-                            &n.left
+                            &node.left
                         };
 
                         if let Some(mut new_nearest) =
