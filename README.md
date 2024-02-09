@@ -1,4 +1,4 @@
-[![Build-Test](https://github.com/arcgang/gang_db/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/arcgang/gang_db/actions/workflows/rust.yml?query=branch%3Amain)
+[![Rust](https://github.com/arcgang/gang_db/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/arcgang/gang_db/actions/workflows/rust.yml?query=branch%3Amain)
 
 # 
 - **Simple**: Simple in-memory vector database within 170 lines of code.
