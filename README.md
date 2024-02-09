@@ -1,8 +1,11 @@
-(https://github.com/arcgang/gang_db/actions/workflows/rust.yml/badge.svg)
 
+<p align="center">
+    <b>GangDB: Simple vector database based on K-D Tree & cosine similarity</b> <br /><br />
+    <a href="https://github.com/arcgang/gang_db/actions/workflows/build"><img src="https://github.com/arcgang/gang_db/actions/workflows/rust.yml/badge.svg" ></a> 
+</p>
+<hr />
 
-# GangDB: Simple vector database based on K-D Tree & cosine similarity
-
+# 
 - **Simple**: Simple in-memory vector database within 170 lines of code.
 - **Safe & Secured**: 100% implemented in Rust.
 
