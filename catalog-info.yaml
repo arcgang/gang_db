@@ -1,0 +1,13 @@
+apiVersion: gangdb.io/v1alpha1
+kind: Component
+metadata:
+  name: gangdb
+  description: |
+    Gangdb is an open-source rust based vector store
+  links:
+    - title: Website
+      url: http://gangdb.io
+spec:
+  type: library
+  owner: CNCF
+  lifecycle: experimental
